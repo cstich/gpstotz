@@ -13,10 +13,6 @@
 *.crdownload
 *.json
 *.geojson
-*.shp
-*.prj
-*.shx
-*.dbf
 *.swp
 *.swn
 *.swo
