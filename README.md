@@ -1,4 +1,4 @@
-# gpstotz
+# gpstotz 0.1
 Given a lat, lon coordinate pair returns the appropriate timezone. 
 Basically a Python wrapper for Eric Muller's map of timezones (http://efele.net/maps/tz/world/).
 
@@ -15,4 +15,5 @@ The library follows the shapely convention that boundaries are not part of the o
 boundary of a timezone polygon is not part of the timezone.
 
 ## To-Do
-Work on the packaging.
+- Work on the packaging
+- Add UTC-Offset
