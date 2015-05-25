@@ -10,6 +10,6 @@ lon = 0.12
 timezone = gpsToTimezone(lat, lon)
 ```
 
-## Timezon boundaries
+## Timezone boundaries
 The library follows the shapely convention that boundaries are not part of the object. Thus, a measurement on the
 boundary of a timezone polygon is not part of the timezone.
