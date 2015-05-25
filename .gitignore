@@ -1,0 +1,32 @@
+*_credentials.py
+*.pyc
+.DS_Store
+*_db_test.py
+*_clear_database.py
+*_tests.py
+*.db
+*.log
+*.pybg
+*.pid
+*.zip
+*.osm
+*.crdownload
+*.json
+*.geojson
+*.shp
+*.prj
+*.shx
+*.dbf
+*.swp
+*.swn
+*.swo
+*~
+
+# Compiled python modules.
+*.pyc
+
+# Setuptools distribution folder.
+/dist/
+
+# Python egg metadata, regenerated from source files by setuptools.
+/*.egg-info
