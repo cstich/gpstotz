@@ -13,3 +13,6 @@ timezone = gpsToTimezone(lat, lon)
 ## Timezone boundaries
 The library follows the shapely convention that boundaries are not part of the object. Thus, a measurement on the
 boundary of a timezone polygon is not part of the timezone.
+
+## To-Do
+Work on the packaging.
