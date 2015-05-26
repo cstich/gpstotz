@@ -1,4 +1,4 @@
-# gpstotz 0.1
+# gpstotz 0.2
 Given a lat, lon coordinate pair returns the appropriate timezone. 
 Basically a Python wrapper for Eric Muller's map of timezones (http://efele.net/maps/tz/world/).
 
