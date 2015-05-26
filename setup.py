@@ -5,11 +5,11 @@ setup(name='gpstotz',
       install_requires=[
       "rtree",
       "shapely"
-      ]
+      ],
       description='Finds the appropriate timezone for coordinates',
       url='http://github.com/cstich/gpstotz',
       author='Christoph Stich',
       author_email='christoph@stich.xyz',
       license='MIT Licence',
-      packages=['geogps'],
+      packages=['gpstotz'],
       zip_safe=False)

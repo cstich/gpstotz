@@ -1,13 +1,23 @@
+'''
+Author: Christoph Stich
+Date: 2015-05-25
+Finds for a lat, lon coordinate pair the appropriate timezone
+'''
+
 from rtree import index  # requires libspatialindex-c3.deb
 from shapely.geometry import Polygon
 from shapely.geometry import Point
 
 import shapefile
+import os
 
 ''' Read the world timezone shapefile '''
-tzshp = open("resources/world/tz_world.shp", "rb")
-tzdbf = open("resources/world/tz_world.dbf", "rb")
-tzshx = open("resources/world/tz_world.shx", "rb")
+tzshpFN = os.path.join(os.path.dirname(__file__), 'resources/world/tz_world.shp')
+tzshp = open(tzshpFN, "rb")
+tzdbfFN = os.path.join(os.path.dirname(__file__), 'resources/world/tz_world.dbf')
+tzdbf = open(tzdbfFN, "rb")
+tzshxFN = os.path.join(os.path.dirname(__file__), 'resources/world/tz_world.shx')
+tzshx = open(tzshxFN, "rb")
 tzworld = shapefile.Reader(shp=tzshp, dbf=tzdbf, shx=tzshx)
 shapes = tzworld.shapes()
 
