@@ -4,10 +4,10 @@ Basically a Python wrapper for Eric Muller's map of timezones (http://efele.net/
 
 ## Usage
 ```
-from gpstotz.gpstotz import gpsToTimezone
+from gpstotz import gpstotz
 lat = 51.50
 lon = 0.12
-timezone = gpsToTimezone(lat, lon)
+timezone = gpstotz.gpsToTimezone(lat, lon)
 ```
 
 ## Timezone boundaries
@@ -15,5 +15,4 @@ The library follows the shapely convention that boundaries are not part of the o
 boundary of a timezone polygon is not part of the timezone.
 
 ## To-Do
-- Work on the packaging
 - Add UTC-Offset
