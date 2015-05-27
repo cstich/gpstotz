@@ -8,23 +8,23 @@ from rtree import index  # requires libspatialindex-c3.deb
 from shapely.geometry import Polygon
 from shapely.geometry import Point
 
-import shapefile
 import os
+import fiona
 
 ''' Read the world timezone shapefile '''
-tzshpFN = os.path.join(os.path.dirname(__file__), 'resources/world/tz_world.shp')
-tzshp = open(tzshpFN, "rb")
-tzdbfFN = os.path.join(os.path.dirname(__file__), 'resources/world/tz_world.dbf')
-tzdbf = open(tzdbfFN, "rb")
-tzshxFN = os.path.join(os.path.dirname(__file__), 'resources/world/tz_world.shx')
-tzshx = open(tzshxFN, "rb")
-tzworld = shapefile.Reader(shp=tzshp, dbf=tzdbf, shx=tzshx)
-shapes = tzworld.shapes()
+tzshpFN = os.path.join(os.path.dirname(__file__),
+                       'resources/world/tz_world.shp')
 
 ''' Build the geo-index '''
 idx = index.Index()
-for i, shape in enumerate(shapes):
-        idx.insert(i, shape.bbox, obj=(i, Polygon(shape.points)))
+with fiona.open(tzshpFN) as shapes:
+    for i, shape in enumerate(shapes):
+        assert shape['geometry']['type'] == 'Polygon'
+        exterior = shape['geometry']['coordinates'][0]
+        interior = shape['geometry']['coordinates'][1:]
+        record = shape['properties']['TZID']
+        poly = Polygon(exterior, interior)
+        idx.insert(i, poly.bounds, obj=(i, record, poly))
 
 
 def gpsToTimezone(lat, lon):
@@ -41,8 +41,9 @@ def gpsToTimezone(lat, lon):
     query = [n.object for n in idx.intersection((lon, lat, lon, lat),
                                                 objects=True)]
     queryPoint = Point(lon, lat)
-    result = [tzworld.records()[q[0]][0] for q in query
-              if q[1].contains(queryPoint)]
+    result = [q[1] for q in query
+              if q[2].contains(queryPoint)]
+
     if len(result) > 0:
         return result[0]
     else:
